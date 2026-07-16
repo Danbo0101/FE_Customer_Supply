@@ -1,67 +1,65 @@
+import Image from "next/image";
 import Link from "next/link";
+import { catalogCategories } from "@/data/catalog";
 
-const flows = [
-  {
-    title: "Admin",
-    href: "/admin",
-    description: "Manage products, orders, inventory, and operations reports.",
-    tone: "border-slate-200 bg-white hover:border-slate-400",
-    badge: "Operations",
-  },
-  {
-    title: "Customer",
-    href: "/customer",
-    description: "Browse categories, track orders, and manage shopping details.",
-    tone: "border-emerald-200 bg-emerald-50 hover:border-emerald-400",
-    badge: "Shopping",
-  },
-];
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-zinc-50 px-6 py-10 text-zinc-950">
-      <section className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-6xl flex-col justify-center gap-10">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700">
-            Supply Shop
+    <>
+      <section className="relative h-80 w-full overflow-hidden bg-[#e8eef5] sm:h-105 lg:h-130">
+        <Image
+          src="/hero.png"
+          alt="Curated beauty supply products"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+      </section>
+
+      <section className="mx-auto w-full max-w-310 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-xl text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#8792a1]">
+            Curated edit
           </p>
-          <h1 className="mt-4 text-4xl font-bold tracking-normal text-zinc-950 sm:text-6xl">
-            Choose your workspace
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-600 sm:text-lg">
-            Admin and customer areas are separated so each role can have its
-            own layout, navigation, and access rules.
-          </p>
+          <h2 className="mt-3 text-[22px] font-semibold uppercase leading-none tracking-[0.14em] text-[#16191f] sm:text-[26px]">
+            View By Category
+          </h2>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {flows.map((flow) => (
+        <div className="mt-11 grid gap-x-8 gap-y-12 sm:grid-cols-2">
+          {catalogCategories.map((category) => (
             <Link
-              key={flow.href}
-              href={flow.href}
-              className={`group flex min-h-56 flex-col justify-between rounded-lg border p-6 shadow-sm transition ${flow.tone}`}
+              key={category.href}
+              href={category.href}
+              className="group block"
             >
-              <div>
-                <span className="inline-flex rounded-full bg-zinc-950 px-3 py-1 text-xs font-semibold text-white">
-                  {flow.badge}
-                </span>
-                <h2 className="mt-6 text-3xl font-semibold tracking-normal">
-                  {flow.title}
-                </h2>
-                <p className="mt-3 max-w-md text-sm leading-6 text-zinc-600">
-                  {flow.description}
-                </p>
+              <div className="border border-[#e5e0d7] bg-[#fbfaf7] p-2 transition duration-300 group-hover:border-[#cdd9e8] group-hover:shadow-[0_18px_44px_rgba(31,42,58,0.08)]">
+                <div className="relative aspect-[1.12/1] w-full overflow-hidden bg-[#eef3f7]">
+                  <Image
+                    src={category.image}
+                    alt={category.label}
+                    fill
+                    sizes="(min-width: 1024px) 560px, (min-width: 640px) 44vw, 100vw"
+                    className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
               </div>
-              <span className="mt-8 text-sm font-semibold text-zinc-950">
-                Open {flow.title}
-                <span className="ml-2 transition group-hover:translate-x-1">
-                  -&gt;
+
+              <div className="mt-4 flex items-center justify-between gap-4 border-b border-[#e5e0d7] pb-3 transition duration-300 group-hover:border-[#294f88]">
+                <span className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#1e2229] transition group-hover:text-[#294f88] sm:text-[14px]">
+                  {category.label}
                 </span>
-              </span>
+                <span
+                  aria-hidden="true"
+                  className="grid size-8 shrink-0 place-items-center rounded-full border border-[#d8d2c8] text-[17px] leading-none text-[#1e2229] transition duration-300 group-hover:translate-x-1 group-hover:border-[#294f88] group-hover:bg-[#294f88] group-hover:text-white"
+                >
+                  &rarr;
+                </span>
+              </div>
             </Link>
           ))}
         </div>
       </section>
-    </main>
+    </>
   );
 }

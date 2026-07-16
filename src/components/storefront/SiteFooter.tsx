@@ -6,17 +6,17 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import Link from "next/link";
 
 const supportLinks = [
-  { label: "Contact Us", href: "/customer/contact" },
-  { label: "Privacy Policy", href: "/customer/privacy-policy" },
-  { label: "Terms of Service", href: "/customer/terms-of-service" },
-  { label: "Return Policy", href: "/customer/return-policy" },
-  { label: "Store Locator", href: "/customer/store-locator" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms-of-service" },
+  { label: "Return Policy", href: "/return-policy" },
+  { label: "Store Locator", href: "/store-locator" },
 ];
 
 const legalLinks = [
-  { label: "Privacy policy", href: "/customer/privacy-policy" },
-  { label: "Terms of service", href: "/customer/terms-of-service" },
-  { label: "Refund policy", href: "/customer/refund-policy" },
+  { label: "Privacy policy", href: "/privacy-policy" },
+  { label: "Terms of service", href: "/terms-of-service" },
+  { label: "Refund policy", href: "/refund-policy" },
 ];
 
 const socialLinks = [
@@ -37,7 +37,7 @@ const socialLinks = [
   },
 ];
 
-export function CustomerFooter() {
+export function SiteFooter() {
   return (
     <footer className="mt-14 border-t border-[#eee9e2] bg-[#fcfbf8] text-[#66656a]">
       <section className="mx-auto flex w-full max-w-5xl flex-col items-center px-6 py-12 text-center sm:py-14">
@@ -75,13 +75,16 @@ export function CustomerFooter() {
       </section>
 
       <section className="border-t border-[#e7e3dd]">
-        <div className="mx-auto flex min-h-[76px] w-full max-w-5xl flex-wrap items-center justify-center gap-x-2.5 gap-y-2 px-6 py-5 text-[11px] tracking-[0.04em] text-[#77757a] sm:justify-start sm:text-[12px]">
+        <div className="mx-auto flex min-h-19 w-full max-w-5xl flex-wrap items-center justify-center gap-x-2.5 gap-y-2 px-6 py-5 text-[11px] tracking-[0.04em] text-[#77757a] sm:justify-start sm:text-[12px]">
           <span>© 2026, Supply</span>
           <span aria-hidden="true">·</span>
           <span>Powered by Shopify</span>
 
           {legalLinks.map((item) => (
-            <span key={item.href} className="inline-flex items-center gap-x-2.5">
+            <span
+              key={item.href}
+              className="inline-flex items-center gap-x-2.5"
+            >
               <span aria-hidden="true">·</span>
               <Link
                 href={item.href}
